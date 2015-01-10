@@ -1,0 +1,20 @@
+{
+  "name": "engulped",
+  "version": "0.0.1",
+  "description": "it rains gulp tasks",
+  "main": "index.js",
+  "author": "Michael McFarland",
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-mocha": "^1.1.1",
+    "gulp-nodemon": "^1.0.4",
+    "gulp-util": "^3.0.1",
+    "mocha": "^2.0.1"
+  },
+  "dependencies": {
+    "debug": "^2.1.0",
+    "gulp-load-plugins": "^0.7.1",
+    "lodash": "^2.4.1",
+    "require-dir": "^0.1.0"
+  }
+}
