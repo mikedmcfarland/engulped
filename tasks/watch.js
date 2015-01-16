@@ -1,10 +1,13 @@
-function watch(gulp,plugins) {
+var path = require('path')
+function watch(gulp,plugins,config) {
   var nodemon = plugins.nodemon
-  var gulpPath = 'node_modules/gulp/bin/gulp.js'
+
   gulp.task('watch',function() {
    nodemon({
-    nodeArgs: ['--harmony'],
-    script: gulpPath 
+     execMap: {
+       "js" : config.nodeExec
+     },
+     script: config.gulpPath
     })
   })
 }

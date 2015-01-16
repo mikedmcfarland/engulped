@@ -3,26 +3,35 @@ var requireDir  = require('require-dir')
 var _           = require('lodash')
 var plugins     = require('gulp-load-plugins')()
 var debug       = require('debug')('engulped')
+var path        = require('path')
 
 function engulped(gulp) {
   var argv = minimist(process.argv.slice(2))
   var mode = argv._.indexOf('dev') !== -1 ? 'dev' : 'prod'
 
+  var gulpPath = path.dirname(require.resolve('gulp')) +
+    '/bin/gulp.js'
+
   var config = {
     mode : mode,
     argv : argv,
+    nodeExec: '6to5-node',
+    gulpPath : gulpPath,
     paths : {
-      test : 'test'
+      test : './test/',
+      src  : './lib/',
+      dest : './dist/'
     }
   }
 
-  //Add all tasks 
+  //Add all tasks
   var tasks = requireDir('tasks')
   debug('loading tasks %o',tasks)
 
   _.forEach(tasks, function(task) {
-    task(gulp,plugins,config) 
+    task(gulp,plugins,config)
   })
+
 }
 
 module.exports = engulped;

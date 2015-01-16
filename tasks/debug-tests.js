@@ -1,21 +1,21 @@
 var path        = require('path')
 var spawn       = require('child_process').spawn
 
-function debugTests(gulp,plugins) {
+function debugTests(gulp,plugins,config) {
  gulp.task('test-debug',function(cb){
+
   //make a "gulp test", with debug-brk set
-  var cwd = process.cwd()
   var gulpTestCommand = [
     '--debug-brk',
-    path.join(cwd, 'node_modules/gulp/bin/gulp.js'),
+    config.gulpPath,
     'test'
   ]
   spawn(
-    'node',
+    config.nodeExec,
     gulpTestCommand,
     //share IO, so it seems like the same process
-    { stdio: 'inherit' }); 
-  }) 
+    { stdio: 'inherit' });
+  })
 }
 
 module.exports = debugTests;
