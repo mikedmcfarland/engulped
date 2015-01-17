@@ -12,10 +12,13 @@ function engulped(gulp) {
   var gulpPath = path.dirname(require.resolve('gulp')) +
     '/bin/gulp.js'
 
+  var nodeExec = path.dirname(require.resolve('6to5')) +
+    '/../../bin/6to5-node'
+
   var config = {
     mode : mode,
     argv : argv,
-    nodeExec: '6to5-node',
+    nodeExec: nodeExec,
     gulpPath : gulpPath,
     paths : {
       test : './test/',
@@ -34,7 +37,7 @@ function engulped(gulp) {
 
 }
 
-module.exports = engulped;
+module.exports = engulped
 // gulp.task('default',['watch'],function(){
 
 // })
