@@ -8,7 +8,7 @@ function build (gulp,plugins,config) {
     config.paths.src + '/**/*.js'
   ]
 
-  gulp.task('build',function() {
+  gulp.task('build',['clean'],function() {
     return gulp.src(src)
       .pipe(sourcemaps.init())
       .pipe(to5())
