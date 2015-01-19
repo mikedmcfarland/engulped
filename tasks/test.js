@@ -5,11 +5,14 @@ function test (gulp,plugins,config) {
   var mocha = plugins.mocha
   var gutil = plugins.util
 
-  gulp.task('test',      reRunGulp('test-execute'))
   gulp.task('test-debug',reRunGulp('test-execute',['--debug-brk']))
 
   //run all mocha tests, beep if theres an error
-  gulp.task('test-execute',function() {
+  gulp.task('test',function() {
+
+    config.debug('registering 6to5')
+    require('6to5/register')
+
     var tests = [config.paths.test + '/**/**Spec.js']
     return gulp.src(tests, {read: false})
     .pipe(mocha())
