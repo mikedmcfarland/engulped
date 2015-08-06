@@ -3,14 +3,14 @@
 Engulped provides utilities for defining some common build build tasks for es6 using babel and mocha.
 I kept needing the same tasks in many of my projects, so this tool makes it possible to add each in as needed.
 
-** Usage
+** How do I use this?
 The most common usage is to add all the default tasks. To do so, your gulpfile would look like the following
 #+begin_src javascript
-var gulp     = require('gulp')
-var Engulped = require('engulped')
+  var gulp     = require('gulp')
+  var Engulped = require('engulped')
 
-var engulped = Engulped.withDefaultTasks(gulp)
-gulp.task('default',['test',build'])
+  var engulped = Engulped.withDefaultTasks(gulp)
+  gulp.task('default',['test','build'])
 #+end_src
 
 This automatically adds many tasks to gulp. The default task added uses the added tasks oo run all specs with mocha and transpiles to es6 to es5.
@@ -18,7 +18,7 @@ This automatically adds many tasks to gulp. The default task added uses the adde
 
 You can then optionally overwrite them as needed
 #+begin_src javascript
-  gulp.task('clean,function(){
+  gulp.task('clean',function(){
     console.log('feeling clean')
   })
 
@@ -28,13 +28,13 @@ You can also reference the original function used to generate the tasks via the 
 For example, here's how you'd overwrite clean with the same implementation:
 
 #+begin_src javascript
-var tasks = engulped.tasks()
-gulp.task('clean',tasks.clean())
+  var tasks = engulped.tasks()
+  gulp.task('clean',tasks.clean())
 #+end_src
 
 Some taskbuilding functions have parameters they accept, take a look at -lib/addDefaultTasks.js- and -lib/taskBuilders- for more information.
 
-** What are the tasks
+** What are the tasks?
 *** clean
 Cleans the directory of files created by transpiling
 *** build
@@ -44,7 +44,7 @@ Run all specs in test directory (es6 registered) (via mocha)
 *** watch
 Runs the default task on any file changes (via nodemon)
 
-** I don't want all these tasks added
+** I'd rather not have all these tasks added
 Then you can create it with the constructor instead, and add them manually
 #+begin_src javascript
 var gulp     = require('gulp')
@@ -57,7 +57,7 @@ gulp.task('clean',tasks.clean())
 #+end_src
 
 
-** I want different src and dest directories for my build
+** I'd like to set different src and dest directories for my tasks
 You can pass a configuration as the second parameter to the constructor or Engulped.withDefaultTasks. The default config looks something like:
 #+begin_src javascript
   {argv : process.argv,
